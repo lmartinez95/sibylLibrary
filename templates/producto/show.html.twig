@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Producto{% endblock %}
+
+{% block body %}
+    <h1>Producto</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>ProId</th>
+                <td>{{ producto.proId }}</td>
+            </tr>
+            <tr>
+                <th>ProIsbnIssn</th>
+                <td>{{ producto.proIsbnIssn }}</td>
+            </tr>
+            <tr>
+                <th>ProCodigo</th>
+                <td>{{ producto.proCodigo }}</td>
+            </tr>
+            <tr>
+                <th>ProNombre</th>
+                <td>{{ producto.proNombre }}</td>
+            </tr>
+            <tr>
+                <th>ProEdicion</th>
+                <td>{{ producto.proEdicion }}</td>
+            </tr>
+            <tr>
+                <th>ProNumpagina</th>
+                <td>{{ producto.proNumpagina }}</td>
+            </tr>
+            <tr>
+                <th>ProPublicLugar</th>
+                <td>{{ producto.proPublicLugar }}</td>
+            </tr>
+            <tr>
+                <th>ProPublicAnio</th>
+                <td>{{ producto.proPublicAnio }}</td>
+            </tr>
+            <tr>
+                <th>ProVolumen</th>
+                <td>{{ producto.proVolumen }}</td>
+            </tr>
+            <tr>
+                <th>ProNumEjemplar</th>
+                <td>{{ producto.proNumEjemplar }}</td>
+            </tr>
+            <tr>
+                <th>ProEmpastado</th>
+                <td>{{ producto.proEmpastado }}</td>
+            </tr>
+            <tr>
+                <th>ProPeso</th>
+                <td>{{ producto.proPeso }}</td>
+            </tr>
+            <tr>
+                <th>ProColeccion</th>
+                <td>{{ producto.proColeccion }}</td>
+            </tr>
+            <tr>
+                <th>ProDescripcion</th>
+                <td>{{ producto.proDescripcion }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('producto_index') }}">back to list</a>
+
+    <a href="{{ path('producto_edit', {'proId': producto.proId}) }}">edit</a>
+
+    {{ include('producto/_delete_form.html.twig') }}
+{% endblock %}

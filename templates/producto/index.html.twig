@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Productos {{ parent() }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('js/jquery-ui/jquery-ui.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('js/jtable/themes/lightcolor/blue/jtable.css') }}">
+{% endblock %}
+{% block body %}
+    {{ parent() }}
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ path('home') }}">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Productos</li>
+            </ol>
+        </nav>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <div>
+            <a href="{{ path('producto_new') }}" class="btn btn-primary">Agregar material</a>
+        </div>
+        <br>
+        <div id="data"></div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/jquery-ui/jquery-ui.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jtable/jquery.jtable.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#data').jtable({
+                title: 'Listado de Editoriales',
+                paging: true,
+                pageSize: 20,
+                sorting: true,
+                defaultSorting: "edtNombre ASC",
+                actions:{
+                    listAction: "{{ path('editorial_listado') }}",
+                },
+                fields:{
+                    edtId:{
+                        key: true,
+                        create: false,
+                        edit: false,
+                        list: false
+                    },
+                    edtCodigo:{
+                        title: 'Código',
+                        width: '7%'
+                    },
+                    edtNombre:{
+                        title: 'Editorial',
+                        width: '25%'
+                    },
+                    edtDireccion:{
+                        title: 'Dirección',
+                        width: '40%'
+                    },
+                    edtTelefono:{
+                        title: 'Teléfono',
+                        width: '15%'
+                    },
+                    paiNombre:{
+                        title: 'Pais',
+                        width: '30%'
+                    },
+                    Acciones: {
+                        title: 'Other',
+                        display: function (data) {
+                            if (data.record)
+                                return  `<a href="/editorial/modify/${data.record.edtId}">Modificar</a>`;
+                        },
+                        create: false,
+                        edit: false
+
+                    }
+                }
+            });
+
+            $('#data').jtable('load');
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,7 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+editorial_index:
+  path: /editorial
+  controller: App\Controller\EditorialController::index

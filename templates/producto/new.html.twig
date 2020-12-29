@@ -1,0 +1,146 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Agregar Material {{parent()}} {% endblock %}
+{% block stylesheets %}{{ parent() }}{% endblock %}
+{% block body %}
+    {{ parent() }}
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ path('home') }}">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="{{ path('producto_index') }}">Produto</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Agregar</li>
+            </ol>
+        </nav>
+        {% for message in app.flashes('danger') %}
+            <div class="alert alert-danger" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {{ form_start(formulario, {'method': 'POST'}) }}
+
+            <div class="form-group">
+                {{ form_row(formulario.proNombre, { 'label': 'Título:'}) }}
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        {{ form_row(formulario.proIsbnIssn, { 'label': 'ISBN/ISSN:' }) }}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        {{ form_row(formulario.proPublicLugar, { 'label': 'Lugar de publicación:'}) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                       {{ form_row(formulario.proEdicion, { 'label': 'Edición:'}) }}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        {{ form_row(formulario.proNumpagina, { 'label': 'Páginas:'}) }}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        {{ form_row(formulario.proVolumen, { 'label': 'Volumen:'}) }}
+                    </div>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class"col">
+                    <div class="form-group">
+                        {{ form_row(formulario.proPeso, { 'label': 'Peso:'}) }}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        {{ form_row(formulario.proPublicAnio, { 'label': 'Año de publicación:'}) }}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        {{ form_row(formulario.proNumEjemplar, { 'label': 'Cantidad de ejemplares:'}) }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                        {{ form_row(formulario.autId, { 'label': 'Autores:'}) }}
+                    </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        {{ form_row(formulario.proColeccion, { 'label': 'Colección:'}) }}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        {{ form_row(formulario.proEmpastado, { 'label': 'Empastado:'}) }}
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        {{ form_row(formulario.tproId, { 'label': 'Tipo de material:'}) }}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        {{ form_row(formulario.cproId, { 'label': 'Categoría:'}) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        {{ form_row(formulario.edtId, { 'label': 'Editorial:'}) }}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        {{ form_row(formulario.langId, { 'label': 'Idioma:'}) }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_row(formulario.proDescripcion, { 'label': 'Descripción:'}) }}
+            </div>
+           <div>
+                {{ form_widget(formulario.submit, { 'label': 'Agregar'}) }}
+                
+                <!-- Button cancelar modal -->
+                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#cancelModal">Cancelar</button>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Cancelar operación</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ¿Desa cancelar la operación?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        <a href="{{ path('producto_index') }}" type="button" class="btn btn-primary">Si</a>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+
+        {{ form_end(formulario) }}
+    </div>
+{% endblock %}
